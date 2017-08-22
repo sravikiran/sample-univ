@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WalmartProductsService } from '../walmart-products.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private walmartProducts: WalmartProductsService) { }
 
   ngOnInit() {
+    this.walmartProducts.getTrendingProducts().subscribe((items) => {
+      console.log(items);
+    });
   }
 
 }
