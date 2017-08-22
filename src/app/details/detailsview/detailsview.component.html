@@ -1,4 +1,27 @@
-<p>
-  detailsview works!
-  Value received is: {{id}}
-</p>
+<div *ngIf="rating">
+  <h3 style="text-align: center;">Reviews of {{rating.name}}</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Reviewer</th>
+        <th>Rating</th>
+        <th>Submitted On</th>
+        <th>Upvotes</th>
+        <th>Downvotes</th>
+        <th>Text</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let review of rating.reviews">
+        <td>{{review.title}}</td>
+        <td>{{review.reviewer}}</td>
+        <td>{{review.overallRating.rating}}</td>
+        <td>{{review.submissionTime | date}}</td>
+        <td>{{review.upVotes}}</td>
+        <td>{{review.downVotes}}</td>
+        <td>{{review.reviewText}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

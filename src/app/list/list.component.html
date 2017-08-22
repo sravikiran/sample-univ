@@ -1,15 +1,22 @@
-<p>
-  list works!
-</p>
-<ul>
-  <li><a [routerLink]="['/details',1]">1</a></li>
-  <li><a [routerLink]="['/details',2]">2</a></li>
-  <li><a [routerLink]="['/details',3]">3</a></li>
-  <li><a [routerLink]="['/details',4]">4</a></li>
-  <li><a [routerLink]="['/details',5]">5</a></li>
-  <li><a [routerLink]="['/details',6]">6</a></li>
-  <li><a [routerLink]="['/details',7]">7</a></li>
-  <li><a [routerLink]="['/details',8]">8</a></li>
-  <li><a [routerLink]="['/details',9]">9</a></li>
-  <li><a [routerLink]="['/details',10]">10</a></li>
-</ul>
+<div *ngFor="let phone of phones" class="col-md-5 col-md-offset-1 text-center"
+  style="margin-bottom: 20px; border:1px solid rgba(0, 0, 0, 0.17); padding: 10px; height: 255px; background: rgb(248, 248, 248);">
+  <div class="row">
+    <div class="col-md-12">
+      <img [src]="phone.thumbnailImage" [alt]="phone.name" height="150" width="150" />
+    </div>
+    <div class="col-md-12" style="padding-top: 10px; padding-bottom:10px;">
+      <div class="col-md-6">
+        Price: <span>{{phone.salePrice}}</span>
+      </div>
+      <div class="col-md-6">
+        <img [src]="phone.customerRatingImage" [title]="phone.customerRating" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" style="min-height: 40px;">
+        <div>{{phone.name}}</div>
+        <a [routerLink]="['/details',phone.itemId]">View Ratings</a>
+      </div>
+    </div>
+  </div>
+</div>

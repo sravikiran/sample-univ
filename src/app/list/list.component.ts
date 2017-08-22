@@ -8,11 +8,13 @@ import { WalmartProductsService } from '../walmart-products.service';
 })
 export class ListComponent implements OnInit {
 
+  phones: any[];
+
   constructor(private walmartProducts: WalmartProductsService) { }
 
   ngOnInit() {
-    this.walmartProducts.getTrendingProducts().subscribe((items) => {
-      console.log(items);
+    this.walmartProducts.getPhones().subscribe((response) => {
+      this.phones = response.json().items;
     });
   }
 
