@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { JsonpModule } from '@angular/http';
+//import { JsonpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { DetailsModule } from './details/details.module';
 import { routesModule } from './app.routes';
@@ -16,7 +17,12 @@ import { WalmartProductsService } from './walmart-products.service';
     ListComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'my-app' }), JsonpModule, DetailsModule, routesModule
+    BrowserModule.withServerTransition({ appId: 'my-app' }),
+    // JsonpModule,
+    HttpClientModule,
+    // HttpClientJsonpModule,
+    DetailsModule,
+    routesModule
   ],
   providers: [WalmartProductsService],
   bootstrap: [AppComponent]

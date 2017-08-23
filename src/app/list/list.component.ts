@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WalmartProductsService } from '../walmart-products.service';
+import { Pokemon } from '../pokemon.model';
 
 @Component({
   selector: 'app-list',
@@ -8,14 +9,18 @@ import { WalmartProductsService } from '../walmart-products.service';
 })
 export class ListComponent implements OnInit {
 
-  phones: any[];
+  //phones: any[];
+  pokemons: Pokemon[];
 
   constructor(private walmartProducts: WalmartProductsService) { }
 
   ngOnInit() {
-    this.walmartProducts.getPhones().subscribe((response) => {
-      this.phones = response.json().items;
+    this.walmartProducts.list().then((r) => {
+      this.pokemons = r;
     });
+    // this.walmartProducts.getPhones().subscribe((response: any) => {
+    //   this.phones = response.items;
+    // });
   }
 
 }

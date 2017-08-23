@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { WalmartProductsService } from '../../walmart-products.service';
+import { Pokemon } from '../../pokemon.model';
 
 @Component({
   selector: 'app-detailsview',
@@ -8,8 +9,9 @@ import { WalmartProductsService } from '../../walmart-products.service';
   styleUrls: ['./detailsview.component.css']
 })
 export class DetailsviewComponent implements OnInit {
-  id: string;
+  id: number;
   rating: any;
+  pokemon: Pokemon;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -17,12 +19,16 @@ export class DetailsviewComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id');
-      this.walmartProducts.getReviews(this.id)
-        .subscribe(result => {
-          this.rating = result.json();
-          console.log(this.rating);
+      this.id = parseInt(params.get('id'));
+      this.walmartProducts.get(this.id)
+        .then((details) => {
+          this.pokemon = details;
         });
+      // this.walmartProducts.getReviews(this.id)
+      //   .subscribe((result: any) => {
+      //     this.rating = result;
+      //     console.log(this.rating);
+      //   });
     });
   }
 

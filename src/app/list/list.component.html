@@ -1,5 +1,4 @@
-<div *ngFor="let phone of phones" class="col-md-5 col-md-offset-1 text-center"
-  style="margin-bottom: 20px; border:1px solid rgba(0, 0, 0, 0.17); padding: 10px; height: 255px; background: rgb(248, 248, 248);">
+<!-- <div *ngFor="let phone of phones" class="col-md-5 col-md-offset-1 text-center" style="margin-bottom: 20px; border:1px solid rgba(0, 0, 0, 0.17); padding: 10px; height: 255px; background: rgb(248, 248, 248);">
   <div class="row">
     <div class="col-md-12">
       <img [src]="phone.thumbnailImage" [alt]="phone.name" height="150" width="150" />
@@ -16,6 +15,19 @@
       <div class="col-md-12" style="min-height: 40px;">
         <div>{{phone.name}}</div>
         <a [routerLink]="['/details',phone.itemId]">View Ratings</a>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div *ngFor="let pokemon of pokemons" class="col-md-3 col-md-offset-1 text-center" style="margin-bottom: 20px; border:1px solid rgba(0, 0, 0, 0.17); padding: 10px; height: 255px; background: rgb(248, 248, 248);">
+  <div class="row">
+    <div class="col-md-12">
+      <img [src]="pokemon.imageUrl" height="150" width="150" />
+    </div>
+    <div class="row">
+      <div class="col-md-12" style="min-height: 40px;">
+        <a [routerLink]="['/details',pokemon.id]">{{ pokemon.name | titlecase }}</a>
       </div>
     </div>
   </div>

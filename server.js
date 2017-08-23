@@ -3,6 +3,7 @@ let path = require('path');
 let ngCore = require('@angular/core');
 let fs = require('fs');
 let glob = require('glob');
+let request = require('request');
 
 let app = express();
 const PORT = 3000;
@@ -18,17 +19,17 @@ let renderModuleFactory = require('@angular/platform-server').renderModuleFactor
 let AppServerModuleNgFactory;
 
 // Load the index.html file.
-let index = fs.readFileSync(path.join(__dirname, '.', 'dist', 'index.html')).toString();
+let index = fs.readFileSync('./dist/index.html', 'utf8');
 
 // Import the AOT compiled factory for your AppServerModule.
 // This import will change with the hash of your built server bundle.
-glob(`${__dirname}/dist-server/*.js`, (err, files) => {
-	AppServerModuleNgFactory = require(files[0]).AppServerModuleNgFactory;
-	app.engine('html', (_, options, callback) => {
-		const opts = { document: index, url: options.req.url };
-		renderModuleFactory(AppServerModuleNgFactory, opts).then(html => callback(null, html));
-	});
+//glob(`${__dirname}/dist-server/*.js`, (err, files) => {
+AppServerModuleNgFactory = require('./dist-server/main.bundle').AppServerModuleNgFactory;
+app.engine('html', (_, options, callback) => {
+	const opts = { document: index, url: options.req.url };
+	renderModuleFactory(AppServerModuleNgFactory, opts).then(html => callback(null, html));
 });
+//});
 
 app.set('view engine', 'html');
 app.set('views', 'dist')

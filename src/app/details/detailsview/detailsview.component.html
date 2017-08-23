@@ -1,4 +1,4 @@
-<div *ngIf="rating">
+<!-- <div *ngIf="rating">
   <h3 style="text-align: center;">Reviews of {{rating.name}}</h3>
   <table class="table">
     <thead>
@@ -24,4 +24,22 @@
       </tr>
     </tbody>
   </table>
+</div> -->
+
+<div *ngIf="pokemon" class="details-container">
+  <img [src]="pokemon.imageUrl">
+  <div>{{pokemon.name | titlecase}}</div>
+  <h4>Types:</h4>
+  <ul>
+    <li *ngFor="let type of pokemon.types">
+      {{ type }}
+    </li>
+  </ul>
+
+  <h4>Stats:</h4>
+  <ul>
+    <li *ngFor="let stat of pokemon.stats">
+      {{ stat.name }}: {{ stat.value }}
+    </li>
+  </ul>
 </div>
